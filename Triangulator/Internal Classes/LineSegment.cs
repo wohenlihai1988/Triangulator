@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+using UnityEngine;
 
 namespace Triangulator
 {
@@ -15,7 +15,7 @@ namespace Triangulator
 
 		public float? IntersectsWithRay(Vector2 origin, Vector2 direction)
 		{
-			float largestDistance = MathHelper.Max(A.Position.X - origin.X, B.Position.X - origin.X) * 2f;
+			float largestDistance = Mathf.Max(A.Position.x - origin.x, B.Position.x - origin.x) * 2f;
 			LineSegment raySegment = new LineSegment(new Vertex(origin, 0), new Vertex(origin + (direction * largestDistance), 0));
 
 			Vector2? intersection = FindIntersection(this, raySegment);
@@ -29,14 +29,14 @@ namespace Triangulator
 
 		public static Vector2? FindIntersection(LineSegment a, LineSegment b)
 		{
-			float x1 = a.A.Position.X;
-			float y1 = a.A.Position.Y;
-			float x2 = a.B.Position.X;
-			float y2 = a.B.Position.Y;
-			float x3 = b.A.Position.X;
-			float y3 = b.A.Position.Y;
-			float x4 = b.B.Position.X;
-			float y4 = b.B.Position.Y;
+			float x1 = a.A.Position.x;
+			float y1 = a.A.Position.y;
+			float x2 = a.B.Position.x;
+			float y2 = a.B.Position.y;
+			float x3 = b.A.Position.x;
+			float y3 = b.A.Position.y;
+			float x4 = b.B.Position.x;
+			float y4 = b.B.Position.y;
 
 			float denom = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1);
 
@@ -46,7 +46,7 @@ namespace Triangulator
 			float ua = uaNum / denom;
 			float ub = ubNum / denom;
 
-			if (MathHelper.Clamp(ua, 0f, 1f) != ua || MathHelper.Clamp(ub, 0f, 1f) != ub)
+			if (Mathf.Clamp(ua, 0f, 1f) != ua || Mathf.Clamp(ub, 0f, 1f) != ub)
 				return null;
 
 			return a.A.Position + (a.B.Position - a.A.Position) * ua;

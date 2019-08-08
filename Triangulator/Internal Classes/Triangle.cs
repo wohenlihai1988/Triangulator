@@ -1,5 +1,3 @@
-using Microsoft.Xna.Framework;
-
 namespace Triangulator
 {
 	/// <summary>
@@ -43,16 +41,16 @@ namespace Triangulator
 
 		static bool checkPointToSegment(Vertex sA, Vertex sB, Vertex point)
 		{
-			if ((sA.Position.Y < point.Position.Y && sB.Position.Y >= point.Position.Y) ||
-				(sB.Position.Y < point.Position.Y && sA.Position.Y >= point.Position.Y))
+			if ((sA.Position.y < point.Position.y && sB.Position.y >= point.Position.y) ||
+				(sB.Position.y < point.Position.y && sA.Position.y >= point.Position.y))
 			{
 				float x = 
-					sA.Position.X + 
-					(point.Position.Y - sA.Position.Y) / 
-					(sB.Position.Y - sA.Position.Y) * 
-					(sB.Position.X - sA.Position.X);
+					sA.Position.x + 
+					(point.Position.y - sA.Position.y) / 
+					(sB.Position.y - sA.Position.y) * 
+					(sB.Position.x - sA.Position.x);
 				
-				if (x < point.Position.X)
+				if (x < point.Position.x)
 					return true;
 			}
 
